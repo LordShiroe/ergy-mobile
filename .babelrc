@@ -1,0 +1,26 @@
+{
+  "presets": [
+    "react-native"
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "cwd": "babelrc",
+        "extensions": [
+          ".js",
+          ".ios.js",
+          ".android.js"
+        ],
+        "root": [
+          "./artifacts"
+        ],
+        "alias": {
+          "interfaces": "./artifacts/interfaces",
+          "theme": "./artifacts/theme",
+          "actions": "./artifacts/redux/actions"
+        }
+      }
+    ]
+  ]
+}
