@@ -11,13 +11,15 @@ export default class AuthLoading extends Component<Props> {
 
     // Fetch the token from storage then navigate to our appropriate place
     _bootstrapAsync = async () => {
-        const userToken = await AsyncStorage.getItem('userToken')
-
+        console.log('search')
+        const keys = await AsyncStorage.getAllKeys()
+        const exists = keys.indexOf('userToken')
+        console.log(exists)
+        const userToken = exists > 0 ? await AsyncStorage.getItem('userToken') : undefined
+        console.log(userToken ? 'Existe' : 'No existe')
         // This will switch to the App screen or Auth screen and this loading
         // screen will be unmounted and thrown away.
-        setTimeout(() => {
-            this.props.navigation.navigate(userToken ? 'App' : 'Auth')
-        }, 1000)
+        this.props.navigation.navigate(userToken ? 'App' : 'Auth')
     }
 
     // Render any loading content that you like here
